@@ -1,4 +1,4 @@
-from web_locators.locators import *
+from locators.locators import *
 
 
 class TestStellarBurgersConstructorForm:
@@ -7,31 +7,27 @@ class TestStellarBurgersConstructorForm:
         """Проверка перехода на "Соусы" """
         driver = login
 
-        driver.find_element(*MainPage.mn_constructor_button).click()
-        driver.find_element(*MainPage.mn_sauces_button).click()
+        sauce_class = h_sauce.get_attribute("class")
+        expected_class = 'Соусы'
 
-        h_sauce = driver.find_element(*MainPage.mn_h_sauces)
+        assert expected_class in sauce_class, f"Ожидаемый класс '{expected_class}' не найден в '{sauce_class}'"
 
-        assert h_sauce.text == 'Соусы'
+
 
     def test_constructor_go_to_filling_scroll_to_filling(self, login):
         """Проверка перехода на "Начинки" """
         driver = login
 
-        driver.find_element(*MainPage.mn_constructor_button).click()
-        driver.find_element(*MainPage.mn_filling_button).click()
-        h_filling = driver.find_element(*MainPage.mn_h_filling)
+        filling_class = h_filling.get_attribute("class")
+        expected_class = 'Начинки'
 
-        assert h_filling.text == 'Начинки'
+        assert expected_class in filling_class, f"Ожидаемый класс '{expected_class}' не найден в '{filling_class}'"
 
     def test_constructor_go_to_bun_scroll_to_bun(self, login):
         """Проверка перехода на "Булки" """
         driver = login
 
-        driver.find_element(*MainPage.mn_constructor_button).click()
-        driver.find_element(*MainPage.mn_filling_button).click()
-        driver.find_element(*MainPage.mn_ban_button).click()
+        bun_class = h_bun.get_attribute("class")
+        expected_class = 'Булки'
 
-        h_ban = driver.find_element(*MainPage.mn_h_ban)
-
-        assert h_ban.text == 'Булки'
+        assert expected_class in bun_class, f"Ожидаемый класс '{expected_class}' не найден в '{bun_class}'"
