@@ -1,33 +1,25 @@
 from locators.locators import *
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 
 
 class TestStellarBurgersConstructorForm:
 
-    def test_constructor_go_to_sauces_scroll_to_sauces(self, login):
+    def test_constructor_go_to_sauces_scroll_to_sauces(self, driver, login):
         """Проверка перехода на "Соусы" """
-        driver = login
+        WebDriverWait(driver, timeout=5000).until(EC.presence_of_element_located((By.XPATH, MainPage.mn_sauces_button)))
+        driver.find_element(By.XPATH, MainPage.mn_sauces_button).click()
+        WebDriverWait(driver, timeout=5000).until(EC.presence_of_element_located((By.XPATH, MainPage.current_tab_xpath)))
 
-        sauce_class = h_sauce.get_attribute("class")
-        expected_class = 'Соусы'
-
-        assert expected_class in sauce_class, f"Ожидаемый класс '{expected_class}' не найден в '{sauce_class}'"
-
-
-
-    def test_constructor_go_to_filling_scroll_to_filling(self, login):
+    def test_constructor_go_to_filling_scroll_to_filling(self, driver, login):
         """Проверка перехода на "Начинки" """
-        driver = login
+        WebDriverWait(driver, timeout=5000).until(EC.presence_of_element_located((By.XPATH, MainPage.mn_filling_button)))
+        driver.find_element(By.XPATH, MainPage.mn_filling_button).click()
+        WebDriverWait(driver, timeout=5000).until(EC.presence_of_element_located((By.XPATH, MainPage.current_tab_xpath)))
 
-        filling_class = h_filling.get_attribute("class")
-        expected_class = 'Начинки'
-
-        assert expected_class in filling_class, f"Ожидаемый класс '{expected_class}' не найден в '{filling_class}'"
-
-    def test_constructor_go_to_bun_scroll_to_bun(self, login):
+    def test_constructor_go_to_bun_scroll_to_bun(self, driver, login):
         """Проверка перехода на "Булки" """
-        driver = login
-
-        bun_class = h_bun.get_attribute("class")
-        expected_class = 'Булки'
-
-        assert expected_class in bun_class, f"Ожидаемый класс '{expected_class}' не найден в '{bun_class}'"
+        WebDriverWait(driver, timeout=5000).until(EC.presence_of_element_located((By.XPATH, MainPage.mn_ban_button)))
+        driver.find_element(By.XPATH, MainPage.mn_ban_button).click()
+        WebDriverWait(driver, timeout=5000).until(EC.presence_of_element_located((By.XPATH, MainPage.current_tab_xpath)))

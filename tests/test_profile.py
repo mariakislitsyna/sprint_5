@@ -1,7 +1,7 @@
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
-from web_locators.locators import *
+from locators.locators import *
 from data.urls import Urls
 
 
