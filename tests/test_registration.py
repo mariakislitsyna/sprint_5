@@ -33,8 +33,8 @@ class TestStellarBurgersRegistration:
 
         driver.find_element(*AuthRegistre.ar_register_button).click()
         WebDriverWait(driver, 5).until(EC.element_to_be_clickable(AuthRegistre.ar_register_button))
-        time.sleep(2)
-        errors_messages = driver.find_elements(*AuthRegistre.ar_error_message)
+
+        errors_messages = WebDriverWait(driver, 5).until(EC.presence_of_all_elements_located(AuthRegistre.ar_error_message))
 
         assert driver.current_url == Urls.url_register and len(errors_messages) == 0
 
